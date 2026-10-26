@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import css from "./MovieModal.module.css";
 import type { Movie } from "../../types/movie";
+import { createPortal } from "react-dom";
 
 interface MovieModalProps {
   movie: Movie;
@@ -29,7 +30,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
       onClose();
     }
   }
-  return (
+  return createPortal(
     <div
       className={css.backdrop}
       onClick={handleBackdropClick}
@@ -61,6 +62,7 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
           </p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

@@ -11,6 +11,7 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
     const query = formData.get("query") as string;
     if (query.length === 0) {
       notify();
+      return;
     }
     console.log(query);
     onSubmit(query);

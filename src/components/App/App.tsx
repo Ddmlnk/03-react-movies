@@ -5,8 +5,7 @@ import { fetchMovies } from "../../services/movieService";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import toast from "react-hot-toast";
-import { createPortal } from "react-dom";
+import toast, { Toaster } from "react-hot-toast";
 import MovieModal from "../MovieModal/MovieModal";
 import type { Movie } from "../../types/movie";
 
@@ -48,19 +47,18 @@ export default function App() {
   }, []);
   return (
     <div className={css.app}>
+      <Toaster />
       <SearchBar onSubmit={setQuery} />
 
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {!isLoading && !isError && (
-        <MovieGrid moviesList={movies} onSelect={handleSelect} />
+        <MovieGrid movies={movies} onSelect={handleSelect} />
       )}
 
-      {selectedMovie &&
-        createPortal(
-          <MovieModal movie={selectedMovie} onClose={handleClose} />,
-          document.body,
-        )}
+      {selectedMovie && (
+        <MovieModal movie={selectedMovie} onClose={handleClose} />
+      )}
     </div>
   );
 }
