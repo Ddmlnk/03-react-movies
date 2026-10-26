@@ -14,7 +14,7 @@ export async function fetchMovies(query: string): Promise<MoviesResponse> {
   const response = await axios.get<MoviesResponse>("3/search/movie", {
     params: { query: query },
     headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TOKEN}}`,
+      Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`,
     },
   });
   return response.data;
