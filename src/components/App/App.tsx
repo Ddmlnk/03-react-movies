@@ -8,15 +8,16 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import toast from "react-hot-toast";
 import { createPortal } from "react-dom";
 import MovieModal from "../MovieModal/MovieModal";
+import type { Movie } from "../../types/movie";
 
 const notify = () => toast("No movies found for your request.");
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -39,7 +40,7 @@ export default function App() {
     searchMovies();
   }, [query]);
 
-  function handleSelect(movie) {
+  function handleSelect(movie: Movie) {
     setSelectedMovie(movie);
   }
   const handleClose = useCallback(() => {

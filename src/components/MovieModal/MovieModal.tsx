@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import css from "./MovieModal.module.css";
+import type { Movie } from "../../types/movie";
 
-export default function MovieModal({ movie, onClose }) {
+interface MovieModalProps {
+  movie: Movie;
+  onClose: () => void;
+}
+
+export default function MovieModal({ movie, onClose }: MovieModalProps) {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
